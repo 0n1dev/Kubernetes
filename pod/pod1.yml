@@ -1,0 +1,21 @@
+# Spring Boot를 도커 이미지로 빌드해서 도커 허브 레지스트리에 등록
+# 스프링 부트 도커와 MySQL 컨테이너를 pod-1이라는 이름을 가지고 있는 Pod에 생성
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-1
+spec:
+  containers:
+    - name: container1
+      image: hkx2r0i/app
+      ports:
+        - containerPort: 8080
+    - name: container2
+      image: mysql
+      ports:
+        - containerPort: 3306
+      env:
+        - name: MYSQL_DATABASE
+          value: "springboot"
+        - name: MYSQL_ROOT_PASSWORD
+          value: "springtest"
